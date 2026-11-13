@@ -176,25 +176,25 @@ namespace JeuDeShadi
 
 
             // CODE FOURNI : remet l'état général de la partie à zéro.
-            for (int i=0;i< TailleGrille; i++) 
+            for (int y=0;y< TailleGrille; y++) 
             {
-              for(int j=0;j< TailleGrille;j++)
+                for(int x=0;x< TailleGrille;x++)
                 {
                     // Si la somme des indices de mon tableau à 2 dimensions (plateauDeJeu) est paire
-                    if((i + j) % 2 == 0)
+                    if((x + y) % 2 == 0)
                     {
                        // for (i = 0; i < 3; i++)
-                       if (j <= 3)
+                       if (y <= 3)
                        {
-                            plateauDeJeu[i, j] = NOIR;
+                            plateauDeJeu[x, y] = NOIR;
                          // Console.WriteLine(NOIR);
 
                        }
 
                         // for (i = 6; i <= 9; i++)
-                        if (j >= 6)
+                        if (y >= 6)
                         {
-                            plateauDeJeu[i, j] = BLANC;
+                            plateauDeJeu[x, y] = BLANC;
                             // Console.WriteLine(BLANC);
                         }
 
@@ -218,6 +218,15 @@ namespace JeuDeShadi
             // - si couleur vaut BLANC, retourner -1 ;
             // - sinon, retourner +1.
             // Utilisez if / else et return.
+    
+                   if (couleur == BLANC)
+                   {
+                        return -1;
+                   }
+                   else if(couleur==NOIR)
+                   {
+                return 1;
+                   }
             return 0;
         }
 
@@ -237,7 +246,25 @@ namespace JeuDeShadi
             // TODO ÉLÈVE :
             // Construisez une condition qui vérifie que x et y sont tous les deux
             // des indices valides du tableau. Vous pouvez utiliser &&.
-            return false;
+
+            /*
+            if(x>=0 && x<= 9&& y>=0 && y <= 9)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+            */
+
+            bool isXTokenOnBoard = x >= 0 && x <= 9;
+            bool isYTokenOnBoard = y >= 0 && y <= 9;
+
+            return isXTokenOnBoard && isYTokenOnBoard;
+
+
+
         }
 
         /// <summary>
