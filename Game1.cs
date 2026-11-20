@@ -263,7 +263,7 @@ namespace JeuDeShadi
 
             return isXTokenOnBoard && isYTokenOnBoard;
 
-
+            
 
         }
 
@@ -298,7 +298,17 @@ namespace JeuDeShadi
             // Lorsqu'une case contient un pion de joueurCourant :
             // - appelez MarquerPionTrouvePourTest(x, y) ;
             // - appelez GenererCoupsPourPion(x, y).
-
+            for (int y = 0;y < plateauDeJeu.GetLength(0); y++)
+            {
+                for (int x = 0;x < plateauDeJeu.GetLength(1); x++)
+                {
+                    if (plateauDeJeu[x,y] == joueurCourant)
+                    {
+                        MarquerPionTrouvePourTest(x, y);
+                        GenererCoupsPourPion(x, y);
+                    }
+                }
+            }
 
             TerminerRechercheCoups();
         }
@@ -348,8 +358,33 @@ namespace JeuDeShadi
             // - les coordonnées à calculer ;
             // - l'ordre des vérifications ;
             // - la boucle et les conditions nécessaires.
+           /* for ( x = 0; x< TailleGrille; x++) 
+            {
+                for (y = 0;y<TailleGrille; y++)
+                {
+                    if (plateauDeJeu[x,y]!= couleurPion)
+                    {
+                        DirectionAvant(couleurPion);
+                    }
+                }
 
+            }*/
+            for (x = 0;x< TailleGrille; x++)
+            { 
+               for(y = 0; y< TailleGrille; y++)
+               {
+                    if (plateauDeJeu[x, y]==BLANC)
+                    {
+                        int xArrivé=x+1;
+                        int yArrivé=y-1;
+                        plateauDeJeu[xArrivé,yArrivé] = BLANC;
+                    }
+               }
 
+            }
+                DirectionAvant(couleurPion);
+               
+            
             // Pour une prise, le pion peut sauter vers l'avant ou vers l'arrière.
             int[] directionsY = { avant, -avant };
 
